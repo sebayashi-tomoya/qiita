@@ -5,7 +5,51 @@
 
 簡単にクラス図に起こすと以下のイメージです。
 
-![alt text](image.png)
+```mermaid
+classDiagram
+    class IObservable~T~ {
+        <<.NET標準>>
+        +Subscribe(observer: IObserver~T~) IDisposable
+    }
+    
+    class ConcreteSubject {
+        <<カスタム実装>>
+        -observers: List~IObserver~string~~
+        -state: string
+        +Subscribe(observer: IObserver~string~) IDisposable
+        +GetState() string
+        +SetState(state: string) void
+        -NotifyObservers() void
+    }
+    
+    class IObserver~T~ {
+        <<.NET標準>>
+        +OnNext(value: T) void
+        +OnError(error: Exception) void
+        +OnCompleted() void
+    }
+    
+    class ConcreteObserverA {
+        <<カスタム実装>>
+        -name: string
+        +OnNext(value: string) void
+        +OnError(error: Exception) void
+        +OnCompleted() void
+    }
+    
+    class ConcreteObserverB {
+        <<カスタム実装>>
+        -name: string
+        +OnNext(value: string) void
+        +OnError(error: Exception) void
+        +OnCompleted() void
+    }
+    
+    IObservable~T~ <|.. ConcreteSubject : implements
+    IObserver~T~ <|.. ConcreteObserverA : implements
+    IObserver~T~ <|.. ConcreteObserverB : implements
+    ConcreteSubject o--> "*" IObserver~string~ : observers
+```
 
 .NET標準でIObservable<T>(発行元)とIObserver<T>(受信者)といったObserverパターンを簡単に実現できるインターフェースが用意されているのでそれを実装するだけですね。
 
