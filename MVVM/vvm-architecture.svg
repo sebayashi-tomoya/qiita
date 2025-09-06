@@ -1,0 +1,108 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="#f8f9fa"/>
+  
+  <!-- タイトル -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#2c3e50">WPF MVVM アーキテクチャパターン</text>
+  
+  <!-- View層 -->
+  <g id="view-layer">
+    <rect x="50" y="80" width="200" height="120" fill="#3498db" stroke="#2980b9" stroke-width="2" rx="10"/>
+    <text x="150" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">View (XAML)</text>
+    <text x="60" y="125" font-family="Arial, sans-serif" font-size="12" fill="white">• UI表示</text>
+    <text x="60" y="145" font-family="Arial, sans-serif" font-size="12" fill="white">• ユーザー操作</text>
+    <text x="60" y="165" font-family="Arial, sans-serif" font-size="12" fill="white">• データバインディング</text>
+    <text x="60" y="185" font-family="Arial, sans-serif" font-size="12" fill="white">• Button, TextBox等</text>
+  </g>
+  
+  <!-- ViewModel層 -->
+  <g id="viewmodel-layer">
+    <rect x="300" y="80" width="200" height="120" fill="#e74c3c" stroke="#c0392b" stroke-width="2" rx="10"/>
+    <text x="400" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">ViewModel</text>
+    <text x="310" y="125" font-family="Arial, sans-serif" font-size="12" fill="white">• プロパティ公開</text>
+    <text x="310" y="145" font-family="Arial, sans-serif" font-size="12" fill="white">• コマンド処理</text>
+    <text x="310" y="165" font-family="Arial, sans-serif" font-size="12" fill="white">• 変更通知</text>
+    <text x="310" y="185" font-family="Arial, sans-serif" font-size="12" fill="white">• UI状態管理</text>
+  </g>
+  
+  <!-- Model層 -->
+  <g id="model-layer">
+    <rect x="550" y="80" width="200" height="120" fill="#27ae60" stroke="#229954" stroke-width="2" rx="10"/>
+    <text x="650" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">Model</text>
+    <text x="560" y="125" font-family="Arial, sans-serif" font-size="12" fill="white">• データアクセス</text>
+    <text x="560" y="145" font-family="Arial, sans-serif" font-size="12" fill="white">• ビジネスロジック</text>
+    <text x="560" y="165" font-family="Arial, sans-serif" font-size="12" fill="white">• エンティティクラス</text>
+    <text x="560" y="185" font-family="Arial, sans-serif" font-size="12" fill="white">• バリデーション</text>
+  </g>
+  
+  <!-- データベース -->
+  <g id="database">
+    <rect x="575" y="250" width="150" height="80" fill="#8e44ad" stroke="#7d3c98" stroke-width="2" rx="10"/>
+    <text x="650" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">Database</text>
+    <text x="585" y="295" font-family="Arial, sans-serif" font-size="12" fill="white">• SQL Server</text>
+    <text x="585" y="315" font-family="Arial, sans-serif" font-size="12" fill="white">• Entity Framework</text>
+  </g>
+  
+  <!-- 矢印とデータフロー -->
+  <!-- View → ViewModel -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34495e"/>
+    </marker>
+  </defs>
+  
+  <!-- データバインディング（双方向） -->
+  <line x1="250" y1="130" x2="300" y2="130" stroke="#34495e" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="300" y1="150" x2="250" y2="150" stroke="#34495e" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="275" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#34495e">Command</text>
+  <text x="275" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#34495e">Binding</text>
+  
+  <!-- ViewModel → Model -->
+  <line x1="500" y1="140" x2="550" y2="140" stroke="#34495e" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="525" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#34495e">Method Call</text>
+  
+  <!-- Model → Database -->
+  <line x1="650" y1="200" x2="650" y2="250" stroke="#34495e" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="665" y="225" font-family="Arial, sans-serif" font-size="10" fill="#34495e">CRUD</text>
+  
+  <!-- データフローの例 -->
+  <g id="data-flow-example">
+    <rect x="50" y="380" width="700" height="180" fill="#ecf0f1" stroke="#bdc3c7" stroke-width="1" rx="5"/>
+    <text x="400" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50">データフローの例</text>
+    
+    <!-- フロー1 -->
+    <circle cx="80" cy="440" r="15" fill="#3498db"/>
+    <text x="80" y="445" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">1</text>
+    <text x="110" y="445" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">ユーザーがボタンクリック</text>
+    
+    <!-- フロー2 -->
+    <circle cx="80" cy="470" r="15" fill="#e74c3c"/>
+    <text x="80" y="475" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">2</text>
+    <text x="110" y="475" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">ViewModelのCommandが実行</text>
+    
+    <!-- フロー3 -->
+    <circle cx="80" cy="500" r="15" fill="#27ae60"/>
+    <text x="80" y="505" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">3</text>
+    <text x="110" y="505" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">ModelのメソッドでDB操作</text>
+    
+    <!-- フロー4 -->
+    <circle cx="400" cy="440" r="15" fill="#8e44ad"/>
+    <text x="400" y="445" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">4</text>
+    <text x="430" y="445" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">データベースからデータ取得</text>
+    
+    <!-- フロー5 -->
+    <circle cx="400" cy="470" r="15" fill="#e74c3c"/>
+    <text x="400" y="475" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">5</text>
+    <text x="430" y="475" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">ViewModelでデータ加工・プロパティ設定</text>
+    
+    <!-- フロー6 -->
+    <circle cx="400" cy="500" r="15" fill="#3498db"/>
+    <text x="400" y="505" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">6</text>
+    <text x="430" y="505" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">データバインディングでView自動更新</text>
+  </g>
+  
+  <!-- 利点 -->
+  <g id="benefits">
+    <text x="50" y="580" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2c3e50">主な利点: 関心の分離 | テスト容易性 | 再利用性 | 保守性向上</text>
+  </g>
+</svg>
