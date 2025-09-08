@@ -28,7 +28,7 @@ UI 側の処理とそこで扱うデータの管理を同じところで実装�
 まず、M - VM - M それぞれで役割をしっかり分けることの大切さを理解して欲しいです。
 
 ## 2. 再利用性の向上
-DB　を利用するアプリケーションの場合、いろんな　View や ViewModel から同じ DB アクセス処理を利用したいはずですよね？
+DB を利用するアプリケーションの場合、いろんな View や ViewModel から同じ DB アクセス処理を利用したいはずですよね？
 
 それなのに、各 ViewModel クラスでそれぞれDBアクセス処理を実装しているとメンテナンスがかなり大変になります。
 
@@ -92,7 +92,7 @@ public class TodoListViewModel
         // DBから一覧取得
         // 例外発生の可能性があるので、本当はコンストラクタでDBアクセスしにいくのは×
         this._todoService = new TodoService();
-        var allTodos =this._todoService.GetAllTodo();
+        var allTodos = this._todoService.GetAllTodo();
 
         // 未完了
         this.IncompleteTodos = new ObservableCollection<TodoItem>(
@@ -156,7 +156,7 @@ public class TodoService
     {
         // クエリ実行
         string query = "SELECT * FROM TODO";
-        var todos =this._dbAccessor.ExecuteQuery(query);
+        var todos = this._dbAccessor.ExecuteQuery(query);
 
         // ❌ ModelからViewModelを直接操作
         _viewModel.RefreshList(todos); 
@@ -207,7 +207,8 @@ TodoApp/(プロジェクトのルートディレクトリ)
 │    └── TodoList.xaml.cs
 ├── Models/
 │    ├── TodoService.cs
-│    └── TodoItem.cs
+│    ├── TodoItem.cs
+│    └── DbAccessor.cs
 ├── ViewModels/
     └── TodoListViewModel.cs
 ```
